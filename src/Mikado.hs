@@ -63,8 +63,8 @@ mikadoStyle :: (S.Set String, AdjacencyMap String) -> Style String String
 mikadoStyle (dones, gr) =
   sty
     { graphAttributes =
-        ("size" := sizeVal : "rankdir" := "BT" : graphAttributes sty)
-    , vertexAttributes = va
+        "size" := sizeVal : "rankdir" := "BT" : graphAttributes sty
+    , vertexAttributes = (++) <$> colorAttrs <*> shapeAttrs
     }
   where
     sty = defaultStyle id
@@ -81,12 +81,15 @@ mikadoStyle (dones, gr) =
         gr' = transpose gr
         m' = adjacencyMap gr'
         succs = m' M.! goal
-    va :: String -> [Attribute String]
-    va goal
+    colorAttrs :: String -> [Attribute String]
+    colorAttrs goal
       | goal `S.member` dones =
         ["color" := "gray50", "fillcolor" := "gray75", "style" := "filled"]
       | isRipe goal =
         ["color" := "green", "fillcolor" := "chartreuse", "style" := "filled"]
+      | otherwise = []
+    shapeAttrs :: String -> [Attribute String]
+    shapeAttrs goal
       | isRoot goal = ["shape" := "doubleoctagon"]
       | otherwise = []
 
