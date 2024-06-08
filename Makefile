@@ -22,6 +22,7 @@ lint :
 tidy :
 	find . -name '*~' -delete
 	find . -name '#*' -delete
+	-rm new-gtd.*
 
 .PHONY : clean
 clean : tidy
