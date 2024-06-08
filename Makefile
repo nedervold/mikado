@@ -1,6 +1,6 @@
 .PHONY : all
 all : build
-	stack exec -- mikado
+	stack exec -- mikado $(HOME)/GettingThingsDone/new-gtd.mikado
 
 .PHONY : build
 build :

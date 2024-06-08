@@ -2,7 +2,7 @@ module Main
   ( main
   ) where
 
-import Mikado
+import Mikado (runMikado)
 
 main :: IO ()
-main = someFunc
+main = runMikado

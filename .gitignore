@@ -7,3 +7,6 @@
 # emacs cruft
 *~
 \#*
+
+# program cruft
+new-gtd.*
